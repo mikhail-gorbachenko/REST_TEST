@@ -69,11 +69,11 @@ public class RestTest {
         expect().
                 statusCode(200).
                 body(
-                        "id", notNullValue(),
-                        "email", notNullValue(),
-                        "first_name", notNullValue(),
-                        "last_name", notNullValue(),
-                        "avatar", notNullValue()).log().all().
+                        "data.id", notNullValue(),
+                        "data.email", notNullValue(),
+                        "data.first_name", notNullValue(),
+                        "data.last_name", notNullValue(),
+                        "data.avatar", notNullValue()).log().all().
                 when().get("https://reqres.in/api/users/2");
     }
 
