@@ -5,6 +5,7 @@ import com.epam.interview.objects.UserBuilder;
 import com.google.gson.Gson;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 import static org.hamcrest.Matchers.*;
 import java.util.List;
@@ -55,11 +56,12 @@ public class RestTest {
 
     @Test
     public void postUser() {
-       User user3 = given().proxy(5555).log().all().contentType("text/JSON").
+       User user3 = given().log().all().contentType("application/JSON").
                 body(user2).
-                when().get("https://reqres.in/api/users").as(User.class);
+                when().post("https://reqres.in/api/users").as(User.class);
 
-       System.out.println(user3);
+       boolean equality = user2.compareSentReturnBody(user3);
+        Assert.assertTrue(equality, "Users info not equals");
     }
 
     @Test
@@ -80,6 +82,11 @@ public class RestTest {
         String response = get("https://reqres.in/api/users?page=2").toString();
         JsonPath jp = new JsonPath(response);
         jp.setRootPath("data");
+
+    }
+
+    @Test
+    public void dumbUserPostTest(){
 
     }
 

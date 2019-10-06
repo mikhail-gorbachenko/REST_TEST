@@ -60,9 +60,19 @@ public class User {
         return id != null && !email.contains(null) && !first_name.contains(null) && !last_name.contains(null) && !avatar.contains(null);
     }
 
+    public boolean compareSentReturnBody(Object o){
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return  email.equals(user.email) &&
+                first_name.equals(user.first_name) &&
+                last_name.equals(user.last_name) &&
+                avatar.equals(user.avatar);
+    }
+
     @Override
     public String toString(){
-        return first_name + "\n" + last_name + "\n" + email + "\n" + avatar;
+        return first_name + "\n" + last_name + "\n" + email + "\n" + avatar+ "\n" + id;
     }
 
     @Override
