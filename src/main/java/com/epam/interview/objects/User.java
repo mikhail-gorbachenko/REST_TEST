@@ -57,7 +57,7 @@ public class User {
     }
 
     public boolean selfIntegrityCheck(){
-        return id != null && !email.contains(null) && !first_name.contains(null) && !last_name.contains(null) && !avatar.contains(null);
+        return id != null && !email.isEmpty() && !first_name.isEmpty() && !last_name.isEmpty() && !avatar.isEmpty();
     }
 
     public boolean compareSentReturnBody(Object o){
