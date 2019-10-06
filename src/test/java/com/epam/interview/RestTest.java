@@ -14,16 +14,12 @@ import static io.restassured.RestAssured.*;
 
 public class RestTest {
 
-    User user1 = new User(1, "george.bluth@reqres.in", "George", "Bluth", "https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg");
     User user2 = new UserBuilder()
             .setFirstName("Airon")
             .setLastName("Bluth")
             .setAvatar("fff.ru")
             .setEmail("dff@kkd.ty")
             .build();
-
-    Response response;
-    User[] list;
 
     @Test
     public void notSoDumbTestSingleUser() {
@@ -36,23 +32,6 @@ public class RestTest {
         user.selfIntegrityCheck();
         System.out.println(user);
     }
-
-    @Test
-    public void getUserAgain(){
-        System.out.println(get("https://reqres.in/api/users/2/data").asString());
-    }
-
-
-/*    @Test
-    public void notNullFieldUsers() {
-        list = when().
-                get("https://reqres.in/api/users?page=2").as(User[].class);
-
-        for (User user: list) {
-            System.out.println(user.selfIntegrityCheck());
-        }
-}
-*/
 
     @Test
     public void postUser() {
@@ -82,11 +61,6 @@ public class RestTest {
         String response = get("https://reqres.in/api/users?page=2").toString();
         JsonPath jp = new JsonPath(response);
         jp.setRootPath("data");
-
-    }
-
-    @Test
-    public void dumbUserPostTest(){
 
     }
 
