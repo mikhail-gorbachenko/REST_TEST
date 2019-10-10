@@ -50,6 +50,14 @@ public class RestTest {
     }
 
     @Test
+    public void objectMappedSingleUserTest(){
+        RequestSpecification request = given();
+        Response response = request.get("/users/2");
+        User user = response.jsonPath().getObject("data", User.class);
+        Assert.assertTrue(user.selfIntegrityCheck(), "user has empty fields");
+    }
+
+    @Test
     public void getMultipleUsersTest() {
         RequestSpecification request = given();
         Response response = request.get("/users?page=2");
@@ -58,6 +66,5 @@ public class RestTest {
            Assert.assertTrue(user.selfIntegrityCheck(), "user has empty fields " + user.toString());
         }
     }
-
 
 }
